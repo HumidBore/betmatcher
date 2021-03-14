@@ -1,0 +1,10 @@
+Content-Type: text/html; charset=UTF-8
+Location: https://www.sportpesa.it/SportsBookAPI.svc/PrematchSchedule/
+Server: 
+X-Aspnet-Version: 
+Cache-Control: private, max-age=0
+Date: Tue, 23 Feb 2021 19:26:48 GMT
+Set-Cookie: ASP.NET_SessionId=0ryf5fgjilkta4a4rhpfjirs; path=/; HttpOnly; SameSite=Lax
+Server-Timing: cdn-cache; desc=MISS
+Server-Timing: edge; dur=7
+Server-Timing: origin; dur=26

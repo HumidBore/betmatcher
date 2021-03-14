@@ -1,0 +1,9 @@
+Content-Type: text/html; charset=UTF-8
+Location: https://www.sportpesa.it/SportsBookAPI.svc/Odds/193984/
+Server: 
+X-Aspnet-Version: 
+Cache-Control: private, max-age=0
+Date: Tue, 23 Feb 2021 19:26:50 GMT
+Server-Timing: cdn-cache; desc=MISS
+Server-Timing: edge; dur=8
+Server-Timing: origin; dur=25

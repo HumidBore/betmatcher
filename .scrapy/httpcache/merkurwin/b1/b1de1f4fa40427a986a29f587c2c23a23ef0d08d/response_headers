@@ -1,0 +1,10 @@
+Content-Type: application/json; charset=utf-8
+Content-Encoding: br
+Vary: Accept-Encoding
+Server: Microsoft-IIS/8.5
+Strict-Transport-Security: max-age=2592000
+X-Rate-Limit-Limit: 5s
+X-Rate-Limit-Remaining: 9
+X-Rate-Limit-Reset: 2021-02-10T21:43:50.3066211Z
+X-Powered-By: ASP.NET
+Date: Wed, 10 Feb 2021 21:43:44 GMT

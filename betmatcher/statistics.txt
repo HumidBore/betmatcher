@@ -1,0 +1,55 @@
+DOWNLOAD_DELAY = 1      #finishes in 18,86 min with 0 code 429    with default (16) concurrent requests
+
+DOWNLOAD_DELAY = 0.5      #finishes in 9,35 min with 26 code 429   with default (16) concurrent requests
+
+DOWNLOAD_DELAY = 0.5      #finishes in 10.16 min with 1 code 429   with 1 concurrent request
+
+DOWNLOAD_DELAY = 0.5      #finishes in 10.75 min with 1 code 429   with default (16) concurrent request with retry for code 429 without sending some requests (with number of bets under the minimum allowed)
+
+DOWNLOAD_DELAY = 0.45      #finishes in 9.5 min with 5 code 429   with 1 concurrent request with retry for code 429 without sending some requests (with number of bets under the minimum allowed)
+
+DOWNLOAD_DELAY = 0.45      #finishes in 9.9 min with 5 code 429   with 1 concurrent request with retry for code 429 without sending some requests (with number of bets under the minimum allowed)
+
+DOWNLOAD_DELAY = 0.4      #finishes in 9.4 min with 15 code 429   with 1 concurrent request with retry for code 429 
+
+DOWNLOAD_DELAY = 0.4      #finishes in 11.17 min with 37 code 429   with 2 concurrent request with retry for code 429 
+
+DOWNLOAD_DELAY = 0.4      #finishes in 10.2 min with 25 code 429   with 1 concurrent request with retry for code 429 without sending some requests (with number of bets under the minimum allowed)
+
+DOWNLOAD_DELAY = 0.35 FIXED (and 0.2 fixed retry delay)      #finishes in 7.58 min with 249 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and no loss
+
+DOWNLOAD_DELAY = 0.35 FIXED (and 0.2 fixed retry delay)      #finishes in 7.63 min with 250 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and no loss
+
+DOWNLOAD_DELAY = 0.33 FIXED (and 5 * RAND retry delay)      #finishes in 12.36 min with 82 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and no bets lost
+
+DOWNLOAD_DELAY = 0.32 FIXED (and 0.2 * RAND retry delay)      #finishes in 7.41 min with 323 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and 3-4k bets lost
+
+DOWNLOAD_DELAY = 0.3      #finishes in 11.3 min with 65 code 429   with 5 concurrent requests with retry for code 429
+
+DOWNLOAD_DELAY = 0.3      #finishes in 11.91 min with 71 code 429   with 1 concurrent requests with retry for code 429
+
+DOWNLOAD_DELAY = 0.3 (and also retry delay)      #finishes in 8.3 min with 334 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) no data lost
+
+DOWNLOAD_DELAY = 0.3 FIXED (and 1 * RAND retry delay)      #finishes in 7.75 min with 150 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and nearly no loss (4 events)
+
+DOWNLOAD_DELAY = 0.3 FIXED (and 0.2 * RAND retry delay)      #finishes in 8.0 min with 334 code 429   with default(16) concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and 11k bets lost
+
+DOWNLOAD_DELAY = 0.3 FIXED (and 0.2 * RAND retry delay)      #finishes in 7.48 min with 462 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and 10k bets lost
+
+DOWNLOAD_DELAY = 0.3  (and  retry delay 0.2 * random)     #finishes in 8.27 min with 523 code 338   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and nearly no loss
+
+DOWNLOAD_DELAY = 0.27 FIXED  (and 1 * RAND retry delay)     #finishes in 7.78 min with 185 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and nearly no loss (6 events)
+
+************** BEST SETTINGS ***********
+DOWNLOAD_DELAY = 0.27 FIXED  (and 0.67 * RAND retry delay) retry max = 3    #finishes in 7.61 min with 253 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and nearly no loss (3 events)
+****************************************
+
+DOWNLOAD_DELAY = 0.27 FIXED  (and 0.675 * RAND retry delay) retry max = 3    #finishes in 7.68 min with 254 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and nearly no loss (4 events)
+
+DOWNLOAD_DELAY = 0.25  (and also retry delay)      #finishes in 7.9 min with 523 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and 11k bets lost
+
+DOWNLOAD_DELAY = 0.25  (and 0.625 * RAND retry delay) retry max = 3     #finishes in 7.63 min with 307 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and nearly no loss (3 events)
+
+DOWNLOAD_DELAY = 0.25  (and 1 * RANDOM retry delay)     #finishes in 7.88 min with 213 code 429   with 1 concurrent requests with retry for code 429 without sending some requests (with number of bets under the minimum allowed) and nearly no loss (9 events)
+
+
