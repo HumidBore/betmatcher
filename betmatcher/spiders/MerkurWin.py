@@ -21,7 +21,7 @@ class MerkurwinSpider(scrapy.Spider, TemplateSpider):
                                     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
                                     'betmatcher.middlewares.TooManyRequestsRetryMiddleware': 544,
                                 },
-        'ITEM_PIPELINES': {'betmatcher.pipelines.SQLlitePipeline': 300
+        'ITEM_PIPELINES': {'betmatcher.pipelines.AzureCloudDatabasePipeline': 300
                             },
         'LOG_LEVEL': 'INFO',  #to remove output (N.B. OUTPUT SLOWS DOWN THE PROGRAMME A LOT)
         'FEED_EXPORT_ENCODING': 'UTF-8'  #specifies the encoding format
@@ -93,7 +93,7 @@ class MerkurwinSpider(scrapy.Spider, TemplateSpider):
         #eventHead contains all the types of bet, corresponding to the values in eventBody
         eventHead = jsonResponseEvent.get("head")
 
-        dateUTC = datetime.fromisoformat(eventBody.get('dateTimeUTC').replace('Z', '')) + timedelta(hours=1)
+        dateUTC = datetime.fromisoformat(eventBody.get('dateTimeUTC').replace('Z', '')) + timedelta(hours=2)
         if dateUTC < self.now:
             print(self.name, "evento live, passo al successivo")
             return

@@ -1,20 +1,20 @@
 Esito Finale 1X2 <> 1,1X2 <> 1
 Esito Finale 1X2 <> 2,1X2 <> 2
 Esito Finale 1X2 <> X,1X2 <> X
-Totale gol 0.5 <> Over,U/O 0.5 <> OVER
-Totale gol 1.5 <> Over,U/O 1.5 <> OVER
-Totale gol 2.5 <> Over,U/O 2.5 <> OVER
-Totale gol 3.5 <> Over,U/O 3.5 <> OVER
-Totale gol 4.5 <> Over,U/O 4.5 <> OVER
-Totale gol 5.5 <> Over,U/O 5.5 <> OVER
-Totale gol 6.5 <> Over,U/O 6.5 <> OVER
-Totale gol 0.5 <> Under,U/O 0.5 <> UNDER
-Totale gol 1.5 <> Under,U/O 1.5 <> UNDER
-Totale gol 2.5 <> Under,U/O 2.5 <> UNDER
-Totale gol 3.5 <> Under,U/O 3.5 <> UNDER
-Totale gol 4.5 <> Under,U/O 4.5 <> UNDER
-Totale gol 5.5 <> Under,U/O 5.5 <> UNDER
-Totale gol 6.5 <> Under,U/O 6.5 <> UNDER
+Totale gol 0.5 <> Over,U/O 0.5 <> OVER 0.5
+Totale gol 1.5 <> Over,U/O 1.5 <> OVER 1.5
+Totale gol 2.5 <> Over,U/O 2.5 <> OVER 2.5
+Totale gol 3.5 <> Over,U/O 3.5 <> OVER 3.5
+Totale gol 4.5 <> Over,U/O 4.5 <> OVER 4.5
+Totale gol 5.5 <> Over,U/O 5.5 <> OVER 5.5
+Totale gol 6.5 <> Over,U/O 6.5 <> OVER 6.5
+Totale gol 0.5 <> Under,U/O 0.5 <> UNDER 0.5
+Totale gol 1.5 <> Under,U/O 1.5 <> UNDER 1.5
+Totale gol 2.5 <> Under,U/O 2.5 <> UNDER 2.5
+Totale gol 3.5 <> Under,U/O 3.5 <> UNDER 3.5
+Totale gol 4.5 <> Under,U/O 4.5 <> UNDER 4.5
+Totale gol 5.5 <> Under,U/O 5.5 <> UNDER 5.5
+Totale gol 6.5 <> Under,U/O 6.5 <> UNDER 6.5
 Entrambe le squadre a segno (Gol/No Gol) <> Si,GOAL/NOGOAL <> GOAL
 Entrambe le squadre a segno (Gol/No Gol) <> No,GOAL/NOGOAL <> NOGOAL
 Doppia Chance <> 1X,DOPPIA CHANCE IN <> 1X

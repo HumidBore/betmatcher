@@ -1,6 +1,6 @@
 import csv
 
-
+from decimal import Decimal, InvalidOperation
 class BetTypeAdjuster(object):
     # SPREADS_TO_APPEND = ['MULTIGOL', 'DOPPIA CHANCE IN + U/O', 'DOPPIA CHANCE OUT + U/O', 'DOPPIA CHANCE IN/OUT + U/O']
     # SPREADS_TO_REPLACE = ['TEMPO X - DOPPIA CHANCE IN', 'TEMPO X - DOPPIA CHANCE OUT', 'TEMPO X - DOPPIA CHANCE IN/OUT', 
@@ -14,7 +14,7 @@ class BetTypeAdjuster(object):
         self.load_allowed_bets()
 
     def load_bets_to_replace(self, bookmaker):  #bookmaker will be spider.name used in open_spider pipeline
-        self.STRING_TO_REPLACE = {}  #each bookmaker is a dict
+        self.STRING_TO_REPLACE = {}  #each bookmaker has a dict
 
         with open(f'.\\Resources\\{bookmaker}.csv') as csv_file:   #path is from pipelines.py file
             csv_reader = csv.reader(csv_file, delimiter=',')
@@ -31,27 +31,32 @@ class BetTypeAdjuster(object):
 
 
     def replace_bets(self, bet):
-        bet_replaced = bet
-        if bet in self.STRING_TO_REPLACE.keys():
-            bet_replaced = self.STRING_TO_REPLACE[bet]
-        return bet_replaced
+        if self.STRING_TO_REPLACE.get(bet):
+            return self.STRING_TO_REPLACE[bet]
+        else:
+            return bet
+        # bet_replaced = bet
+        # if bet in self.STRING_TO_REPLACE.keys():
+        #     bet_replaced = self.STRING_TO_REPLACE[bet]
+        # return bet_replaced
 
     def is_allowed_bet(self, bet):
         return self.ALLOWED_BETS.get(bet)
 
     def fractional_to_decimal_odd(self, fraction):
         try:
-            return float(fraction)
-        except ValueError:
+             #if cast is not allowed, raise an exception, because the fraction must be converted
+            return str(round(Decimal(fraction), 2))
+        except (ValueError, InvalidOperation):
             if fraction == None:
-                return 1.0
+                return '1'
             if fraction == 'Evens': #evens means a 2.0 resulting odd
                 fraction = "1/1"
             num, denom = fraction.split('/')
-            return round(float(num) / float (denom), 2) + 1.00
+            return str(round(Decimal(num) / Decimal(denom), 2) + 1)
         except TypeError:
-            if fraction == None:
-                return 1.0
+            if fraction == None: 
+                return '1'
             else:
                 return fraction
     

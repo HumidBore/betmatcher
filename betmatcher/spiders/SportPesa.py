@@ -20,7 +20,7 @@ class SportpesaSpider(scrapy.Spider, TemplateSpider):
                                     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
                                     'betmatcher.middlewares.TooManyRequestsRetryMiddleware': 544,
                                 },
-        'ITEM_PIPELINES': {'betmatcher.pipelines.SQLlitePipeline': 300
+        'ITEM_PIPELINES': {'betmatcher.pipelines.AzureCloudDatabasePipeline': 300
                             },
         'HTTPCACHE_ENABLED': False,
         'LOG_LEVEL': 'INFO',  #to remove output (N.B. OUTPUT SLOWS DOWN THE PROGRAMME A LOT)
@@ -82,7 +82,7 @@ class SportpesaSpider(scrapy.Spider, TemplateSpider):
                 'bet': bet.get('Kind').get('Name') + self.BET_SEPARATOR + bet.get('Name'),
                 'betOdd': bet.get('Odds')
                 }
-            except ValueError:
+            except (ValueError,TypeError):
                 pass
                 # print('Quota non di un match:', match)
             

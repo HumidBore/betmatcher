@@ -1,38 +1,36 @@
 
-# from betmatcher import betTypeAdjuster
-# from betTypeAdjuster import BetTypeAdjuster
 import re
 import time
 from datetime import datetime, timedelta
 from datetime import date
 import sqlite3
-# from betmatcher.spiders import SportPesa
+
 from betmatcher.spiders import SportPesa
 from betmatcher.spiders import MerkurWin
 from betmatcher.spiders import BetMan
 from betmatcher.spiders import AdmiralYes
 from betmatcher.spiders import Sport888
 
+from bet_comparator import BetComparatorFromAzureDB
+
 from scrapy.crawler import CrawlerProcess
 
 from multiprocessing import Process #needed because when midlleware stops the process to retry the request, the other crawler must not be stopped
 import os
 
-start = time.time()
+# start = time()
 
-# process = CrawlerProcess()
-# process.crawl(SportPesa.SportpesaSpider())
-# process.crawl(MerkurWin.MerkurwinSpider())
-# process.crawl(BetMan.BetmanSpider())
-# process.crawl(AdmiralYes.AdmiralyesSpider())
-# process.crawl(Sport888.A888sportSpider())
-# process.start()
 
 def info(title):
     print(title)
     print('module name:', __name__)
     print('parent process:', os.getppid())
     print('process id:', os.getpid())
+
+def launchComparator():
+    info('Inizio comparatore')
+    comparator = BetComparatorFromAzureDB()
+    comparator.find_matches()
 
 def launchSportPesa():
     info('FUNCTION launchSportPesa')
@@ -66,32 +64,34 @@ def launchSport888():
 
 def runInParallel(*functions):  #runs functions in parallel, creating a process for each bookmaker
     processes = []
+    start = time.time()
     for function in functions:
         process = Process(target=function)
         process.start()
         processes.append(process)
     for p in processes:
         p.join()
+    print("Terminato lo scraper (dentro run in parallel)")
+    launchComparator()
+    print("Print da run in parallel finito il comparator")
+    print("TEMPO TOTALE:", time.time()-start)
 
 if __name__ == '__main__':
-    PATH = '.\\Databases\\'     #relative path to the db (.\\ stands for betmatcher outer folder)
-    DB_NAME = "TESTbetmatcher.db"
+    
     info('main line')
-    # connection = sqlite3.connect(PATH + DB_NAME)    #connect to the database specified as string (.db is the extension for databases in sqllite3)
-    # cursor = connection.cursor()
-    # print("connected")
-    # cursor.execute('delete from test_multiple_spiders')
-    # connection.commit()
-    # cursor.close()
-    # connection.close()
-    # print("deleted and closed")
     runInParallel(launchMerkurWin,
                 launchSport888,
                 launchBetMan,
                 launchSportPesa,
                 launchAdmiralYes
                 )
+    # print("Terminato lo scraping (dentro name = main)")
+    
+   
+    # runInParallel(launchSportPesa)
+    
 
+# print("Print dall'esterno")
 # end = time.time()
 # print("TEMPO TOTALE: ", (end - start) / 60.0, 'minuti')
 

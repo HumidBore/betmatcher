@@ -1,18 +1,18 @@
 1X2 Finale <> 1,1X2 <> 1
 1X2 Finale <> 2,1X2 <> 2
 1X2 Finale <> X,1X2 <> X
-"U/O 0,5 <> Ov.0,5",U/O 0.5 <> OVER
-"U/O 1,5 <> Ov.1,5",U/O 1.5 <> OVER
-"U/O 2,5 <> Ov.2,5",U/O 2.5 <> OVER
-"U/O 3,5 <> Ov.3,5",U/O 3.5 <> OVER
-"U/O 4,5 <> Ov.4,5",U/O 4.5 <> OVER
-"U/O 5,5 <> Ov.5,5",U/O 5.5 <> OVER
-"U/O 0,5 <> Un.0,5",U/O 0.5 <> UNDER
-"U/O 1,5 <> Un.1,5",U/O 1.5 <> UNDER
-"U/O 2,5 <> Un.2,5",U/O 2.5 <> UNDER
-"U/O 3,5 <> Un.3,5",U/O 3.5 <> UNDER
-"U/O 4,5 <> Un.4,5",U/O 4.5 <> UNDER
-"U/O 5,5 <> Un.5,5",U/O 5.5 <> UNDER
+"U/O 0,5 <> Ov.0,5",U/O 0.5 <> OVER 0.5
+"U/O 1,5 <> Ov.1,5",U/O 1.5 <> OVER 1.5
+"U/O 2,5 <> Ov.2,5",U/O 2.5 <> OVER 2.5
+"U/O 3,5 <> Ov.3,5",U/O 3.5 <> OVER 3.5
+"U/O 4,5 <> Ov.4,5",U/O 4.5 <> OVER 4.5
+"U/O 5,5 <> Ov.5,5",U/O 5.5 <> OVER 5.5
+"U/O 0,5 <> Un.0,5",U/O 0.5 <> UNDER 0.5
+"U/O 1,5 <> Un.1,5",U/O 1.5 <> UNDER 1.5
+"U/O 2,5 <> Un.2,5",U/O 2.5 <> UNDER 2.5
+"U/O 3,5 <> Un.3,5",U/O 3.5 <> UNDER 3.5
+"U/O 4,5 <> Un.4,5",U/O 4.5 <> UNDER 4.5
+"U/O 5,5 <> Un.5,5",U/O 5.5 <> UNDER 5.5
 GG/NG <> Goal,GOAL/NOGOAL <> GOAL
 GG/NG <> No goal,GOAL/NOGOAL <> NOGOAL
 Espulsi Si/No <> No Esp,ESPULSIONE SI/NO <> NO

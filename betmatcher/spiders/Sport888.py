@@ -21,7 +21,7 @@ class A888sportSpider(scrapy.Spider, TemplateSpider):
                                     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
                                     'betmatcher.middlewares.TooManyRequestsRetryMiddleware': 544,
                                 },
-        'ITEM_PIPELINES': {'betmatcher.pipelines.SQLlitePipeline': 300
+        'ITEM_PIPELINES': {'betmatcher.pipelines.AzureCloudDatabasePipeline': 300
                             },
         'LOG_LEVEL': 'INFO',  #to remove output (N.B. OUTPUT SLOWS DOWN THE PROGRAMME A LOT)
         'FEED_EXPORT_ENCODING': 'UTF-8'  #specifies the encoding format
@@ -56,7 +56,7 @@ class A888sportSpider(scrapy.Spider, TemplateSpider):
                             callback=self.parseTournament
                         )
             else:
-                if country.get("eventCount") > self.MINIMUM_NUMBER_OF_BETS:
+                if country.get("eventCount") != None and country.get("eventCount") > self.MINIMUM_NUMBER_OF_BETS:
                     yield scrapy.Request(
                             url = f'https://eu-offering.kambicdn.org/offering/v2018/888it/listView/football/{countryKey}.json?lang=it_IT&market=IT&client_id=2&channel_id=1&ncid=1614704340502&useCombined=true',
                             callback=self.parseTournament
@@ -82,7 +82,7 @@ class A888sportSpider(scrapy.Spider, TemplateSpider):
         tournament = event.get("group")
         
         #date using italian timezone
-        date = datetime.fromisoformat(event.get("start").replace('Z', '')) + timedelta(hours=1)
+        date = datetime.fromisoformat(event.get("start").replace('Z', '')) + timedelta(hours=2) #need to add 2 hours to have italian time (UTC +2)
         if date < self.now:
             print(self.name, "evento live, passo al successivo")
             return
@@ -97,13 +97,14 @@ class A888sportSpider(scrapy.Spider, TemplateSpider):
                         betType = f'{originalBetType} {round(float(outcome.get("line")) / 1000, 1)}'  #line is for example 2500 (stand for 2.5) in Under/Over
                     yield {
                         'tournament': tournament,
-                        'betRadarID': None,
+                        # 'betRadarID': None,
+                        'betRadarID': -1,
                         'event': eventName,
                         'date': date,
                         'bet': betType + self.BET_SEPARATOR + outcome.get('label'),
                         'betOdd': outcome.get('oddsFractional')
-                    }
+                    }  
         except ValueError:
-                pass
-                # print('Quota non di un match:', match)
+            pass
+            # print('Quota non di un match:', match)
 
