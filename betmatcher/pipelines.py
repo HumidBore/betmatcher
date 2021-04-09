@@ -146,8 +146,6 @@ class AzureCloudDatabasePipeline(object):
                     results.betRadarID = newval.betRadarID and
                     results.event = newval.event and
                     results.bet = newval.bet
-            WHEN MATCHED THEN
-                    UPDATE SET results.betOdd = newval.betOdd
             WHEN NOT MATCHED THEN
                     INSERT (bookmaker, tournament, betRadarID, event, date, bet, betOdd) 
                     VALUES (newval.bookmaker, newval.tournament, newval.betRadarID, newval.event, newval.date, newval.bet, newval.betOdd)
@@ -212,12 +210,14 @@ class AzureCloudDatabasePipeline(object):
         start_commit = time.time()
         try:
             self.cursor.execute(self.SET_ANSI_WARNINGS_OFF)   #if a row contains stfields longer than the maximum permitted on the column (e.g. varchar(100)), this option allows them to be truncated 
-            self.cursor.executemany(self.SQL_INSERT_SCRAPED_BETS, self.records)
+            self.cursor.executemany(self.SQL_MERGE, self.records)
             self.cursor.execute(self.SET_ANSI_WARNINGS_ON)
             end_commit = time.time()
             print("TEMPO INSERT:",spider, end_commit-start_commit)
-        except (pyodbc.IntegrityError):
+        except (pyodbc.IntegrityError) as e:
             print("ERRORE: inserimento di un valore duplicato")
+            print(e)
+            self.cursor.execute(self.SET_ANSI_WARNINGS_ON)
         finally:
             self.records.clear()
             self.connection.commit()

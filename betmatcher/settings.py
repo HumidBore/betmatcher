@@ -97,6 +97,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-LOG_LEVEL='INFO'  #to remove output (N.B. OUTPUT SLOWS DOWN THE PROGRAMME A LOT)
+# LOG_LEVEL='INFO'  #to remove output (N.B. OUTPUT SLOWS DOWN THE PROGRAMME A LOT)
 
 FEED_EXPORT_ENCODING = 'UTF-8'  #specifies the encoding format

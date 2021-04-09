@@ -357,7 +357,7 @@ class BetComparatorFromAzureDB (object):
                     results.bookmaker2 = newval.bookmaker2 and
                     results.bet2 = newval.bet2
             WHEN MATCHED THEN
-                    UPDATE SET results.betOdd1 = newval.betOdd1, results.betOdd2 = newval.betOdd2, results.insertingdate = newval.insertingdate
+                    UPDATE SET results.RTP = newval.RTP, results.betOdd1 = newval.betOdd1, results.betOdd2 = newval.betOdd2, results.insertingdate = newval.insertingdate
             WHEN NOT MATCHED THEN
                     INSERT (RTP,tournament,betRadarID,event,date,bookmaker1,bet1,betOdd1,bookmaker2,bet2,betOdd2,insertingdate) 
                     VALUES (newval.RTP, newval.tournament, newval.betRadarID, newval.event, newval.date, newval.bookmaker1, newval.bet1, newval.betOdd1,newval.bookmaker2, newval.bet2, newval.betOdd2,newval.insertingdate);
@@ -373,7 +373,7 @@ class BetComparatorFromAzureDB (object):
                     results.bookmaker3 = newval.bookmaker3 and
                     results.bet3 = newval.bet3
             WHEN MATCHED THEN
-                    UPDATE SET results.betOdd1 = newval.betOdd1, results.betOdd2 = newval.betOdd2,results.betOdd3 = newval.betOdd3, results.insertingdate = newval.insertingdate
+                    UPDATE SET results.RTP = newval.RTP, results.betOdd1 = newval.betOdd1, results.betOdd2 = newval.betOdd2,results.betOdd3 = newval.betOdd3, results.insertingdate = newval.insertingdate
             WHEN NOT MATCHED THEN
                     INSERT (RTP,tournament,betRadarID,event,date,bookmaker1,bet1,betOdd1,bookmaker2,bet2,betOdd2,bookmaker3,bet3,betOdd3,insertingdate) 
                     VALUES (newval.RTP, newval.tournament, newval.betRadarID, newval.event, newval.date, newval.bookmaker1, newval.bet1, newval.betOdd1,newval.bookmaker2, newval.bet2, newval.betOdd2,newval.bookmaker3, newval.bet3, newval.betOdd3,newval.insertingdate);
@@ -598,7 +598,7 @@ class BetComparatorFromAzureDB (object):
                                         row[0],    #row[0] is bookmaker1
                                         re.sub(r'^.*? <> ', '', row[5]),    #row[5] is bet1
                                         # self.decimal_context.create_decimal_from_float(round(float(row[6]), 2)),    #row[6] is betOdd1, stored as text in sqlite, then cast to float, rounded to 2 decimal digits and cast to Decimal to insert in azure sql  
-                                        round(Decimal(row[6]), 2),    #row[6] is betOdd1, stored as text in sqlite, then cast to float, rounded to 2 decimal digits and cast to Decimal to insert in azure sql  
+                                        round(Decimal(row[6]), 2),    #row[6] is betOdd1, stored as text in sqlite, then cast to Decimal, rounded to 2 decimal digits and cast to Decimal to insert in azure sql  
                                         odd[0],    #odd[0] is bookmaker2
                                         re.sub(r'^.*? <> ', '', odd[1]),    #odd[1] is bet2
                                         # self.decimal_context.create_decimal_from_float(round(float(odd[2]), 2))     #odd[2] is betOdd2
@@ -690,12 +690,20 @@ class BetComparatorFromAzureDB (object):
                                                 )) 
                   
 
-    def compute_rtp_two_outcomes(self,firstOdd, secondOdd):   #computes rtp based on odds
-        result = (firstOdd * secondOdd) / (firstOdd + secondOdd) * 100
+    # def compute_rtp_two_outcomes(self,firstOdd, secondOdd):   #computes rtp based on odds
+    #     result = ((firstOdd * secondOdd) / (firstOdd + secondOdd)) * 100
+    #     return round(result, 2)
+
+    def compute_rtp_two_outcomes(self,q1, q2):   #computes rtp based on odds
+        result = ((q1  *(q2 - 1)) / q2) * 100
         return round(result, 2)
     
-    def compute_rtp_three_outcomes(self,firstOdd, secondOdd, thirdOdd):   #computes rtp based on odds. thirdOdd is because this method can be invoke with three bets
-        result = (firstOdd * secondOdd * thirdOdd) / (firstOdd * secondOdd + secondOdd * thirdOdd + firstOdd * thirdOdd) * 100
+    # def compute_rtp_three_outcomes(self,firstOdd, secondOdd, thirdOdd):   #computes rtp based on odds. thirdOdd is because this method can be invoke with three bets
+    #     result = (firstOdd * secondOdd * thirdOdd) / (firstOdd * secondOdd + secondOdd * thirdOdd + firstOdd * thirdOdd) * 100
+    #     return round(result, 2)
+
+    def compute_rtp_three_outcomes(self,q1, q2, q3):   #computes rtp based on odds. thirdOdd is because this method can be invoke with three bets
+        result = ((q1 * ((q2 - 1)*q3 - q2)) / (q2 * q3)) * 100
         return round(result, 2)
 
 

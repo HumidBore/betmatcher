@@ -76,11 +76,13 @@ class SisalSpider(scrapy.Spider, TemplateSpider):
             date = datetime.fromisoformat(event.get('data').replace('Z', '')) + timedelta(hours=2)
             if date > self.now:
                 try:
-                    matches[event.get("codiceAvvenimento")] = {
-                        'betRadarID': event.get('externalProviderInfoList')[0].get('idAvvProviderLive'),
-                        'eventName': self.findEventName(event.get("descrizione"), self.splitterSisal),
-                        'date': date
-                    }
+                    betRadarID = event.get('externalProviderInfoList')[0].get('idAvvProviderLive')
+                    if betRadarID: #if is not null
+                        matches[event.get("codiceAvvenimento")] = {
+                            'betRadarID': betRadarID,
+                            'eventName': self.findEventName(event.get("descrizione"), self.splitterSisal),
+                            'date': date
+                        }
                 except (ValueError,TypeError):  #in case of an odd not of a match (probably antepost)
                     pass
             else:
