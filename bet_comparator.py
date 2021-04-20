@@ -695,7 +695,8 @@ class BetComparatorFromAzureDB (object):
     #     return round(result, 2)
 
     def compute_rtp_two_outcomes(self,q1, q2):   #computes rtp based on odds
-        result = ((q1  *(q2 - 1)) / q2) * 100
+        # result = ((q1  *(q2 - 1)) / q2) * 100
+        result = (q1  *(1.0 - 1.0/q2)) * 100
         return round(result, 2)
     
     # def compute_rtp_three_outcomes(self,firstOdd, secondOdd, thirdOdd):   #computes rtp based on odds. thirdOdd is because this method can be invoke with three bets
@@ -703,7 +704,8 @@ class BetComparatorFromAzureDB (object):
     #     return round(result, 2)
 
     def compute_rtp_three_outcomes(self,q1, q2, q3):   #computes rtp based on odds. thirdOdd is because this method can be invoke with three bets
-        result = ((q1 * ((q2 - 1)*q3 - q2)) / (q2 * q3)) * 100
+        # result = ((q1 * ((q2 - 1)*q3 - q2)) / (q2 * q3)) * 100
+        result = (q1 * (1.0 - 1.0/q2 -1.0/q3)) * 100
         return round(result, 2)
 
 

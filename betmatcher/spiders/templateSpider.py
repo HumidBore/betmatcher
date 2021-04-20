@@ -22,5 +22,3 @@ class TemplateSpider (object):
     def findEventName(self, event, splitter):
         squadra1, squadra2 = re.sub(r'\b\w{1,2}\b', '', re.sub(r'[.\(\)\[\]?!]', '', event)).split(splitter, 1)
         return re.sub(r' +', ' ', f'{squadra1} - {squadra2}'.strip()).upper()  
-
-
